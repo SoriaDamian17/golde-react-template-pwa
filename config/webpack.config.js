@@ -55,6 +55,24 @@ module.exports = (env) => {
                 chunkFilename: '[id].css',
                 ignoreOrder: false, // Enable to remove warnings about conflicting order
             }),
+            new WebpackPwaManifestPlugin({
+                name: 'Golden-pwa',
+                shortname: '',
+                description: '',
+                background_color: '#fff',
+                theme_color: '#b1a',
+                icons: [
+                    {
+                        src: path.join(__dirname, 'public/images/icon.png'),
+                        sizes: [96, 128, 192, 256, 384, 512]
+                    }
+                ]
+            }),
+            new WorkboxWebpackPlugin.GenerateSW({
+                swDest: 'sw.js',
+                skipWaiting: true,
+                claimsClient: true
+            }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
                 manifest: require('../dll/modules-manifest.json')
