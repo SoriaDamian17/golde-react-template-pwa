@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -63,13 +65,13 @@ module.exports = (env) => {
                 theme_color: '#b1a',
                 icons: [
                     {
-                        src: path.join(__dirname, 'public/images/icon.png'),
+                        src: path.resolve(__dirname, '../public/images/icon.png'),
                         sizes: [96, 128, 192, 256, 384, 512]
                     }
                 ]
             }),
             new WorkboxWebpackPlugin.GenerateSW({
-                swDest: 'sw.js',
+                swDest: 'service-worker.js',
                 skipWaiting: true,
                 clientsClaim: true
             }),
@@ -111,5 +113,5 @@ module.exports = (env) => {
                 },
             ]
         }
-    }
+    };
 };

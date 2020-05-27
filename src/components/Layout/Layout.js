@@ -14,7 +14,7 @@ const Layout = (props) => {
 
     return (
         <div className="layout">
-            <div className="main-header">
+            <div className="start">
                 <Logo width={250} height={250}/>
                 <h1 className="title">React Template</h1>
                 <p className="subtitle p-1">A JavaScript library for building user interfaces</p>
