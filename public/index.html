@@ -7,6 +7,14 @@
     <title>React Template</title>
     <link rel="preconnect" href="http://localhost:3000" />
     <link rel="preload" as="script" />
+    <style>
+        body {
+            background: url('public/images/bg_purple.png') repeat center;
+        }
+        .start {
+            background: url('public/images/overlay_stars.svg') repeat center;
+        }
+    </style>
 </head>
 <body>
     <noscript>
@@ -14,17 +22,17 @@
     </noscript>
     <div id="app"></div>
     <script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-            console.log('SW registered')
-            })
-            .catch(registrationError => {
-            console.log('SW error', registrationError)
-            })
-        })
-    }
+    // if ('serviceWorker' in navigator) {
+    //     window.addEventListener('load', function () {
+    //     navigator.serviceWorker.register('/service-worker.js')
+    //         .then(registration => {
+    //         console.log('SW registered')
+    //         })
+    //         .catch(registrationError => {
+    //         console.log('SW error', registrationError)
+    //         })
+    //     })
+    // }
     </script>
 </body>
 </html>

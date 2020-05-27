@@ -71,7 +71,7 @@ module.exports = (env) => {
             new WorkboxWebpackPlugin.GenerateSW({
                 swDest: 'sw.js',
                 skipWaiting: true,
-                claimsClient: true
+                clientsClaim: true
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
