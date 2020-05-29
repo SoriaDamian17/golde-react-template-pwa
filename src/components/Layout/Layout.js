@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import './Layout.scss';
-
-import Logo from '../Logo';
-import Button from '../Button';
+import EarthComponent from '../Earth';
+import MoonComponent from '../Moon';
+import AstronautComponent from '../Astronaut';
 
 const Layout = (props) => {
 
@@ -15,12 +15,15 @@ const Layout = (props) => {
     return (
         <div className="layout">
             <div className="start">
-                <Logo width={250} height={250}/>
-                <h1 className="title">React Template</h1>
-                <p className="subtitle p-1">A JavaScript library for building user interfaces</p>
-                <Button title="Learn React" href="https://reactjs.org/docs/getting-started.html"/>
+                {children}
+                <div className="object">
+                    <EarthComponent className="earth" width={100} height={100} />
+                    <MoonComponent className="moon" width={80} height={80}/>
+                    <div className="object_astronaut">
+                        <AstronautComponent className="astronaut" width={140} height={179}/>
+                    </div>
+                </div>
             </div>
-            {children}
         </div>
     );
 };
