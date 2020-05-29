@@ -14,25 +14,52 @@
         .start {
             background: url('public/images/overlay_stars.svg') repeat;
         }
+        .full-page-loader {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .full-page-loader > img {
+            animation: 1.8s infinite heartbeat;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
     <noscript>
         <h2>Your browser not support Javascript</h2>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+        <div class="full-page-loader">
+            <img width="200" src="/images/icon.png" alt="PWA Logo" />
+        </div>
+    </div>
     <script>
-    // if ('serviceWorker' in navigator) {
-    //     window.addEventListener('load', function () {
-    //     navigator.serviceWorker.register('/service-worker.js')
-    //         .then(registration => {
-    //         console.log('SW registered')
-    //         })
-    //         .catch(registrationError => {
-    //         console.log('SW error', registrationError)
-    //         })
-    //     })
-    // }
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Template PWA is working');
+            })
+            .catch(registrationError => {
+                console.log('Template PWA error', registrationError);
+            })
+        })
+    }
     </script>
 </body>
 </html>

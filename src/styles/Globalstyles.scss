@@ -133,6 +133,15 @@ p {
 	padding: 1rem;
 }
 
+.rocket{
+    z-index: 95;
+    position: absolute;
+    transform: translateX(-50px);
+    top: 75%;
+    pointer-events: none;
+    animation: rocket-movement 200s linear infinite both running;
+}
+
 .earth {
 	position: absolute;
     top: 20%;
@@ -160,21 +169,4 @@ p {
 	animation: move-astronaut 50s infinite linear both alternate;
 }
 
-@-moz-keyframes move-astronaut {
-    100% { -moz-transform: translate(-160px, -160px);}
-}
-@-webkit-keyframes move-astronaut {
-    100% { -webkit-transform: translate(-160px, -160px);}
-}
-@keyframes move-astronaut{
-    100% { -webkit-transform: translate(-160px, -160px); transform:translate(-160px, -160px); }
-}
-@-moz-keyframes rotate-astronaut {
-    100% { -moz-transform: rotate(-720deg);}
-}
-@-webkit-keyframes rotate-astronaut {
-    100% { -webkit-transform: rotate(-720deg);}
-}
-@keyframes rotate-astronaut{
-    100% { -webkit-transform: rotate(-720deg); transform:rotate(-720deg); }
-}
+@import '_animations.scss';
