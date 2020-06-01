@@ -1,7 +1,8 @@
-# Golden React Template
-This project is a base template for a project in React, where it has all the settings for two environments: development and production, it has bundle optimization and code revision.
+# React Template PWA
+This project is a base template for a project in React and PWA, where it has all the settings for two environments: development and production, it has bundle optimization and code revision.
 
 # Screen Shot
+![alt text](./doc/screen-shot.png)
 
 ## How to use the project locally
 
