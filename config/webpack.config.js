@@ -6,7 +6,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const manifest = require('../dll/modules-manifest.json');
+const manifestJSON = require('../dll/modules-manifest.json');
 
 module.exports = (env) => {
     return {
@@ -81,7 +81,7 @@ module.exports = (env) => {
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
-                manifest
+                manifest: manifestJSON
             })
         ],
         module: {

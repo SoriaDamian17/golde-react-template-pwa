@@ -5,7 +5,7 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
-const manifest = require('../dll/modules-manifest.json');
+const manifestJSON = require('../dll/modules-manifest.json');
 const webpack = require('webpack');
 
 module.exports = (env) => {
@@ -71,7 +71,7 @@ module.exports = (env) => {
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
-                manifest
+                manifest: manifestJSON
             })
         ],
         module: {

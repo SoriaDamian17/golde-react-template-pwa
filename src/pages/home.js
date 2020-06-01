@@ -15,7 +15,7 @@ export default withUserAgent((props) => {
             <div className="main-container">
                 <LogoComponent className="logo" width={sizeLogo.width} height={sizeLogo.height} />
                 <p className="sub-title">Create your projects using PWA</p>
-                <Button title="Go to Repository"/>
+                <Button title="Go to Repository" href="https://github.com/SoriaDamian17/golde-react-template-pwa"/>
             </div>
         </Layout>
     );
