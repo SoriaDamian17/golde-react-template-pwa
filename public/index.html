@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>React Template</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="preconnect" href="http://localhost:3000" />
     <link rel="preload" as="script" />
     <style>
         body {
-            background: url('public/images/bg_purple.png') repeat center;
+            background: url('<%= htmlWebpackPlugin.options.path %>/images/bg_purple.png') repeat center;
         }
         .start {
-            background: url('public/images/overlay_stars.svg') repeat;
+            background: url('<%= htmlWebpackPlugin.options.path %>/images/overlay_stars.svg') repeat;
         }
         .full-page-loader {
             display: flex;
@@ -45,7 +45,7 @@
     </noscript>
     <div id="app">
         <div class="full-page-loader">
-            <img width="200" src="/images/icon.png" alt="PWA Logo" />
+            <img width="200" src="<%= htmlWebpackPlugin.options.path %>/images/icon.png" alt="PWA Logo" />
         </div>
     </div>
     <script>

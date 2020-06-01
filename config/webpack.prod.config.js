@@ -5,6 +5,7 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
+const manifest = require('../dll/modules-manifest.json');
 const webpack = require('webpack');
 
 module.exports = (env) => {
@@ -42,7 +43,9 @@ module.exports = (env) => {
             analyzerPort: 7777
             }),
             new HtmlWebpackPlugin({
+                title: 'React Template',
                 template: 'public/index.html',
+                path: 'public',
                 minify: true
             }),
             new MiniCssExtractPlugin({
@@ -57,7 +60,7 @@ module.exports = (env) => {
                 threshold: 10240,
                 minRatio: 0.8
             }),
-            new BrotliPlugin({ //brotli plugin
+            new BrotliPlugin({
                 asset: '[path].br[query]',
                 test: /\.(js|scss|css|html|svg)$/,
                 threshold: 10240,
@@ -68,7 +71,7 @@ module.exports = (env) => {
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
-                manifest: require('../dll/modules-manifest.json')
+                manifest
             })
         ],
         module: {
@@ -105,4 +108,4 @@ module.exports = (env) => {
             ]
         }
     };
-}
+};

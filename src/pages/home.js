@@ -13,7 +13,7 @@ export default withUserAgent((props) => {
     return (
         <Layout title="Home">
             <div className="main-container">
-                <LogoComponent width={sizeLogo.width} height={sizeLogo.height} />
+                <LogoComponent className="logo" width={sizeLogo.width} height={sizeLogo.height} />
                 <p className="sub-title">Create your projects using PWA</p>
                 <Button title="Go to Repository"/>
             </div>
