@@ -1,10 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
+const manifestJSON = require('../dll/modules-manifest.json');
 const webpack = require('webpack');
 
 module.exports = (env) => {
@@ -42,13 +45,33 @@ module.exports = (env) => {
             analyzerPort: 7777
             }),
             new HtmlWebpackPlugin({
+                title: 'React Template',
                 template: 'public/index.html',
+                path: 'public',
                 minify: true
             }),
             new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             chunkFilename: '[id].css',
             ignoreOrder: false, // Enable to remove warnings about conflicting order
+            }),
+            new WebpackPwaManifestPlugin({
+                name: 'Golden-pwa',
+                shortname: '',
+                description: '',
+                background_color: '#fff',
+                theme_color: '#b1a',
+                icons: [
+                    {
+                        src: 'https://i.ibb.co/0fJBJ3g/icon-min.png',
+                        sizes: [96, 128, 192, 256, 384, 512]
+                    }
+                ]
+            }),
+            new WorkboxWebpackPlugin.GenerateSW({
+                swDest: 'service-worker.js',
+                skipWaiting: true,
+                clientsClaim: true
             }),
             new CompressionPlugin({
                 filename: '[path].gz[query]',
@@ -57,7 +80,7 @@ module.exports = (env) => {
                 threshold: 10240,
                 minRatio: 0.8
             }),
-            new BrotliPlugin({ //brotli plugin
+            new BrotliPlugin({
                 asset: '[path].br[query]',
                 test: /\.(js|scss|css|html|svg)$/,
                 threshold: 10240,
@@ -68,7 +91,7 @@ module.exports = (env) => {
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
-                manifest: require('../dll/modules-manifest.json')
+                manifest: manifestJSON
             })
         ],
         module: {
@@ -105,4 +128,4 @@ module.exports = (env) => {
             ]
         }
     };
-}
+};

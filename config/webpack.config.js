@@ -6,6 +6,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const manifestJSON = require('../dll/modules-manifest.json');
 
 module.exports = (env) => {
     return {
@@ -13,6 +14,7 @@ module.exports = (env) => {
         output: {
             filename: 'app.bundle.js',
             path: path.join(__dirname, "../dist"),
+            publicPath: '/'
         },
         devtool: 'inline-source-map',
         devServer: {
@@ -49,7 +51,9 @@ module.exports = (env) => {
                 analyzerPort: 7777
             }),
             new HtmlWebpackPlugin({
+                title: 'React Template',
                 template: 'public/index.html',
+                path: 'public',
                 minify: false
             }),
             new MiniCssExtractPlugin({
@@ -65,7 +69,7 @@ module.exports = (env) => {
                 theme_color: '#b1a',
                 icons: [
                     {
-                        src: path.resolve(__dirname, '../public/images/icon.png'),
+                        src: 'https://i.ibb.co/0fJBJ3g/icon-min.png',
                         sizes: [96, 128, 192, 256, 384, 512]
                     }
                 ]
@@ -77,7 +81,7 @@ module.exports = (env) => {
             }),
             new webpack.DllReferencePlugin({
                 context: path.resolve(__dirname, '../dll/'),
-                manifest: require('../dll/modules-manifest.json')
+                manifest: manifestJSON
             })
         ],
         module: {
@@ -102,6 +106,9 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(jpg|png|gif|svg)$/,
+                    include: [
+                        path.join(__dirname, '..', 'public')
+                    ],
                     use: {
                             loader: 'url-loader',
                             options: {

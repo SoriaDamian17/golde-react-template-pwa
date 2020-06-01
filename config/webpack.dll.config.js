@@ -1,5 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -21,4 +21,4 @@ module.exports = {
             context: path.resolve(__dirname, "src", "app")
         })
     ],
-}
+};
