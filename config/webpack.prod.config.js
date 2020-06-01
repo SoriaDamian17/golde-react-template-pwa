@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -52,6 +54,24 @@ module.exports = (env) => {
             filename: 'css/[name].css',
             chunkFilename: '[id].css',
             ignoreOrder: false, // Enable to remove warnings about conflicting order
+            }),
+            new WebpackPwaManifestPlugin({
+                name: 'Golden-pwa',
+                shortname: '',
+                description: '',
+                background_color: '#fff',
+                theme_color: '#b1a',
+                icons: [
+                    {
+                        src: 'https://i.ibb.co/0fJBJ3g/icon-min.png',
+                        sizes: [96, 128, 192, 256, 384, 512]
+                    }
+                ]
+            }),
+            new WorkboxWebpackPlugin.GenerateSW({
+                swDest: 'service-worker.js',
+                skipWaiting: true,
+                clientsClaim: true
             }),
             new CompressionPlugin({
                 filename: '[path].gz[query]',

@@ -69,7 +69,7 @@ module.exports = (env) => {
                 theme_color: '#b1a',
                 icons: [
                     {
-                        src: path.resolve(__dirname, '../public/images/icon.png'),
+                        src: 'https://i.ibb.co/0fJBJ3g/icon-min.png',
                         sizes: [96, 128, 192, 256, 384, 512]
                     }
                 ]
